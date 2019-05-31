@@ -17,7 +17,6 @@ class App extends Component {
 
   componentDidMount() {
     this.getCharacters(`${this.state.baseUrl}1`);
-    //next: "https://swapi.co/api/people/?page=2"
   }
 
   getCharacters = URL => {
