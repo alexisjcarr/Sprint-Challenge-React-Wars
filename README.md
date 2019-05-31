@@ -26,11 +26,26 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] What is React JS and what problems does it try and solve? Support your answer with concepts introduced in class and from your personal research on the web.
 
+React is a powerful unopinionated UI library who’s main purpose is to be used to build powerful applications. React uses these encapsulated pieces of UI called Components that concern themselves with their own individual pieces of the DOM. 
+
 - [ ] What does it mean to _think_ in react?
+
+Per the React documentation (or, more specifically, this particular page in the documentation: https://reactjs.org/docs/thinking-in-react.html), thinking in React encompasses the following:
+
+  * Start With A Mock
+  * Break The UI Into A Component Hierarchy
+  * Build A Static Version in React
+  * Identify The Minimal (but complete) Representation Of UI State
+  * Identify Where Your State Should Live
+  * Data Flow
 
 - [ ] Describe state.
 
+State is the data managed within a component.
+
 - [ ] Describe props.
+
+Props is how data is passed from component to component.
 
 ## Project Set Up
 
