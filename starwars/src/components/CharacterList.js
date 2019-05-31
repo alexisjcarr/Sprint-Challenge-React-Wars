@@ -1,9 +1,12 @@
-import React from 'react';
+import React from "react";
+import Character from "./Character";
 
 const CharacterList = props => {
-    return (
-        <h1>Hello from the Death Star!</h1>
-    )
-}
+  return (
+    <div>
+      {props.starwarsChars.map(char => <Character character={char} key={char.id} />)}
+    </div>
+  );
+};
 
 export default CharacterList;
