@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import "./App.scss";
 
 import CharacterList from "./components/CharacterList";
+import theme from './theme.mp3';
 
 class App extends Component {
   constructor() {
     super();
+    this.theme = new Audio(theme);
     this.state = {
       starwarsChars: [],
       baseUrl: 'https://swapi.co/api/people/?page=',
@@ -42,6 +44,7 @@ class App extends Component {
       }
     })
     this.getCharacters(`${this.state.baseUrl}${this.state.page}`);
+    this.theme.play();
   }
 
   getPrevPage = () => {
@@ -51,6 +54,7 @@ class App extends Component {
       }
     })
     this.getCharacters(`${this.state.baseUrl}${this.state.page}`);
+    this.theme.play();
   }
 
   render() {
