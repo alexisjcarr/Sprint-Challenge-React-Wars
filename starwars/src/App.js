@@ -36,7 +36,8 @@ class App extends Component {
       });
   };
 
-  getNextPage = () => {
+  getNextPage = e => {
+    e.preventDefault();
     this.setState(prevState => {
       return {
         page: prevState.page + 1,
@@ -46,7 +47,8 @@ class App extends Component {
     this.theme.play();
   }
 
-  getPrevPage = () => {
+  getPrevPage = e => {
+    e.preventDefault();
     this.setState(prevState => {
       return {
         page: prevState.page - 1,
