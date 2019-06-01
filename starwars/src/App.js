@@ -38,9 +38,11 @@ class App extends Component {
 
   getNextPage = e => {
     if (this.state.page === 9) {
-      this.setState({
-        page: 1
-      });
+      this.setState(prevState => {
+        return {
+          page: 1,
+        }
+      }, () => this.getCharacters(`${this.state.baseUrl}${this.state.page}`));
     } else {
       this.setState(prevState => {
         return {
@@ -53,9 +55,11 @@ class App extends Component {
 
   getPrevPage = e => {
     if (this.state.page === 1) {
-      this.setState({
-        page: 10
-      });
+      this.setState(prevState => {
+        return {
+          page: 9,
+        }
+      }, () => this.getCharacters(`${this.state.baseUrl}${this.state.page}`));
     } else {
       this.setState(prevState => {
         return {
