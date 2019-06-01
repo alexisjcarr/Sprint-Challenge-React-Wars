@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.scss";
 
 import CharacterList from "./components/CharacterList";
-import theme from './theme.mp3';
+import theme from "./theme.mp3";
 
 class App extends Component {
   constructor() {
@@ -10,13 +10,13 @@ class App extends Component {
     this.theme = new Audio(theme);
     this.state = {
       starwarsChars: [],
-      baseUrl: 'https://swapi.co/api/people/?page=',
-      page: 2
+      baseUrl: "https://swapi.co/api/people/?page=",
+      page: 1
     };
   }
 
   componentDidMount() {
-    this.getCharacters(`${this.state.baseUrl}1`);
+    this.getCharacters(`${this.state.baseUrl}${this.state.page}`);
   }
 
   getCharacters = URL => {
@@ -37,26 +37,38 @@ class App extends Component {
   };
 
   getNextPage = e => {
-    e.preventDefault();
-    this.setState(prevState => {
-      return {
-        page: prevState.page + 1,
-      }
-    })
+    // e.preventDefault();
+    if (this.state.page >= 10) {
+      this.setState({
+        page: 1
+      });
+    } else {
+      this.setState(prevState => {
+        return {
+          page: prevState.page + 1,
+        };
+      });
+    }
     this.getCharacters(`${this.state.baseUrl}${this.state.page}`);
     this.theme.play();
-  }
+  };
 
   getPrevPage = e => {
-    e.preventDefault();
-    this.setState(prevState => {
-      return {
-        page: prevState.page - 1,
-      }
-    })
+    // e.preventDefault();
+    if (this.state.page <= 1) {
+      this.setState({
+        page: 10
+      });
+    } else {
+      this.setState(prevState => {
+        return {
+          page: prevState.page - 1
+        };
+      });
+    }
     this.getCharacters(`${this.state.baseUrl}${this.state.page}`);
     this.theme.play();
-  }
+  };
 
   render() {
     return (
