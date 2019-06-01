@@ -37,8 +37,7 @@ class App extends Component {
   };
 
   getNextPage = e => {
-    // e.preventDefault();
-    if (this.state.page >= 10) {
+    if (this.state.page === 9) {
       this.setState({
         page: 1
       });
@@ -47,15 +46,13 @@ class App extends Component {
         return {
           page: prevState.page + 1,
         };
-      });
+      }, () => this.getCharacters(`${this.state.baseUrl}${this.state.page}`));
     }
-    this.getCharacters(`${this.state.baseUrl}${this.state.page}`);
     this.theme.play();
   };
 
   getPrevPage = e => {
-    // e.preventDefault();
-    if (this.state.page <= 1) {
+    if (this.state.page === 1) {
       this.setState({
         page: 10
       });
@@ -64,9 +61,8 @@ class App extends Component {
         return {
           page: prevState.page - 1
         };
-      });
+      }, () => this.getCharacters(`${this.state.baseUrl}${this.state.page}`));
     }
-    this.getCharacters(`${this.state.baseUrl}${this.state.page}`);
     this.theme.play();
   };
 
