@@ -26,11 +26,34 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] What is React JS and what problems does it try and solve? Support your answer with concepts introduced in class and from your personal research on the web.
 
+React is a very useful, unopinionated UI component library whose main purpose is to facilitate the building of frontend applications. React relies heavily on components that concern themselves with their own individual pieces of the DOM. 
+
+DOM operations can be very performance greedy, so if there is a site that has a lot of DOM updates (i.e. social media sites like Facebook), then there is the possibility that the DOM updates can render slowly. 
+
+React solves the above problem by using what is called a virtual DOM. The virtual DOM, according to the React documentation, is a technology wherein a virtual representation of the DOM is kept in memory and subsequently synced (or reconciled) with the “real” DOM by the ReactDOM. To be perfectly honest, I don't completely understand why this helps, but my suspicion is that many, simultaneous changes to the DOM has the potential to overload it, so the virtual DOM acts as a middleman of sorts to mediate this barrage of updating.
+
 - [ ] What does it mean to _think_ in react?
+
+Per the React documentation (or, more specifically, this particular page in the documentation: https://reactjs.org/docs/thinking-in-react.html), thinking in React encompasses the following:
+
+  * Start With A Mock
+  * Break The UI Into A Component Hierarchy
+  * Build A Static Version in React
+  * Identify The Minimal (but complete) Representation Of UI State
+  * Identify Where Your State Should Live
+  * Data Flow
+
+- [ ] Briefly describe some of the differences between a Class/Stateful component and a Functional/Presentational component.
+
+Besides the obvious difference that class/stateful components have state and functional/presentational components do not, the biggest difference between the two is the syntax. With the latter, we can write the component as a regular arrow function and pass props in as the argument; whereas, with the former, we have to write the component as a class that extends the React Component class.
 
 - [ ] Describe state.
 
+State is the data managed within a component.
+
 - [ ] Describe props.
+
+Props is how data is passed from component to component.
 
 ## Project Set Up
 

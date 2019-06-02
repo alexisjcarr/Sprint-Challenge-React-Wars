@@ -1,16 +1,22 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.scss";
+
+import CharacterList from "./components/CharacterList";
+import theme from "./theme.mp3";
 
 class App extends Component {
   constructor() {
     super();
+    this.theme = new Audio(theme);
     this.state = {
-      starwarsChars: []
+      starwarsChars: [],
+      baseUrl: "https://swapi.co/api/people/?page=",
+      page: 1
     };
   }
 
   componentDidMount() {
-    this.getCharacters('https://swapi.co/api/people/');
+    this.getCharacters(`${this.state.baseUrl}${this.state.page}`);
   }
 
   getCharacters = URL => {
@@ -22,6 +28,7 @@ class App extends Component {
         return res.json();
       })
       .then(data => {
+        console.log(data);
         this.setState({ starwarsChars: data.results });
       })
       .catch(err => {
@@ -29,10 +36,47 @@ class App extends Component {
       });
   };
 
+  getNextPage = e => {
+    if (this.state.page === 9) {
+      this.setState(prevState => {
+        return {
+          page: 1,
+        }
+      }, () => this.getCharacters(`${this.state.baseUrl}${this.state.page}`));
+    } else {
+      this.setState(prevState => {
+        return {
+          page: prevState.page + 1,
+        };
+      }, () => this.getCharacters(`${this.state.baseUrl}${this.state.page}`));
+    }
+    this.theme.play();
+  };
+
+  getPrevPage = e => {
+    if (this.state.page === 1) {
+      this.setState(prevState => {
+        return {
+          page: 9,
+        }
+      }, () => this.getCharacters(`${this.state.baseUrl}${this.state.page}`));
+    } else {
+      this.setState(prevState => {
+        return {
+          page: prevState.page - 1
+        };
+      }, () => this.getCharacters(`${this.state.baseUrl}${this.state.page}`));
+    }
+    this.theme.play();
+  };
+
   render() {
     return (
       <div className="App">
         <h1 className="Header">React Wars</h1>
+        <CharacterList starwarsChars={this.state.starwarsChars} />
+        <button onClick={this.getPrevPage}>Get Previous Page</button>
+        <button onClick={this.getNextPage}>Get Next Page</button>
       </div>
     );
   }
